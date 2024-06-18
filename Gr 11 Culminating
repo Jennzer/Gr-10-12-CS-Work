@@ -1,0 +1,548 @@
+import java.io.*;
+import java.lang.Thread;
+import java.util.*;
+public class Main {
+  public static void main(String[] args) {
+    
+    Scanner input = new Scanner(System.in);
+    Scanner in = new Scanner(System.in);
+
+    menu();
+
+    String artistName = "";
+    int x = 0;
+    String artist = input.next();
+    
+    while (x == 0) {
+    if (artist.equals("1")) {
+      artistName = "Justin Bieber";
+      x++;
+      break;
+    }
+    if (artist.equals("2")) {
+      artistName = "Ariana Grande";
+      x++;
+      break;
+    }
+    else {
+        System.out.println("Invalid option");
+        System.out.println("For Justin Bieber, enter 1 \t|\tFor Ariana Grande, enter 2");
+        artist = input.next();
+    }   
+  }
+    
+    System.out.println("\nDo you want to see your Debit Card balance? Enter yes / any key for no)");
+    String response = in.nextLine();
+    
+    if (artist.equals("1") || artist.equals("2")) {
+      if (response.equals("Yes") || response.equals("yes")) {
+    debitCardBalance();
+      }
+    }
+
+     queue(artistName);
+  }
+
+  public static void menu () { 
+    System.out.println("\n\t\t\t\t\t\t\t\t     TicketMart");
+    System.out.println("\n   Welcome to TicketMart where you can buy tickets to see your favourite artists!");
+    System.out.println("\n\t\t\t\tHere are the some upcoming artist coming to Toronto");
+    System.out.println("\n\n\t\t\t\tJustin Bieber\t\t\t\t\t\tAriana Grande");
+    System.out.println("\n\n\t\t\t\tJuly 2, 2023\t\t\t\t\t\tJuly 9, 2023");
+    System.out.println("\n\n\t\t\t PRESALE CODE: N/A\t\t\t\t\tPRESALE CODE: ICS2023");
+
+    System.out.println("\n\nPlease indicate which artist you would like to buy tickets for");
+    System.out.println("For Justin Bieber, enter 1 \t|\tFor Ariana Grande, enter 2");
+  }
+  
+  public static void debitCardBalance () { 
+   System.out.println("\nYour Debit Card balance is $1000");
+    }
+
+  public static void queue(String x) {
+    Random rand = new Random();
+     int rando = rand.nextInt(4001);
+    
+     System.out.println("\n\t\t\t\t\t\t\t  You are now in the queue");
+    System.out.print("\t\t\t\t\t\t\t\t\t     "+ rando);
+     System.out.println("\n\t\t\t\t\t\t\t     People ahead of you");
+    System.out.println("\n\t\t\t\t\tPlease wait until you enter the seating chart");
+
+     if (rando < 2000) {
+       waitTimeOne();
+        ticketOne(x);
+     }
+     else {
+       waitTimeTwo();
+       ticketTwo(x);
+     }
+   } 
+
+  public static void waitTimeOne () {
+    try {
+       long start = System.currentTimeMillis();
+        Thread.sleep(3000);
+    }
+     catch (Exception e) {
+     }
+   }
+
+   public static void waitTimeTwo () {
+    try {
+       long start = System.currentTimeMillis();
+        Thread.sleep(7000);
+    }
+     catch (Exception e) {
+     }
+   }
+       
+     public static void ticketOne (String artistName) {
+       if (artistName.equals("Justin Bieber")) {
+        System.out.print("\n\n\t\t\t\t\t\t\t" +  artistName);
+         System.out.print(" - July 2, 2023");
+       }
+       if (artistName.equals("Ariana Grande")) {
+         System.out.print("\n\n  " +  artistName);
+         System.out.print("  -  July 9, 2023");
+         System.out.print("\t\t\t\tPresale code? Enter 1 before buying");
+       }
+       seatingChartOne(artistName);
+   }
+  
+  public static void ticketTwo (String artistName) {
+    if (artistName.equals("Justin Bieber")) {
+      System.out.print("\n\n\t\t\t\t\t\t" +  artistName);
+         System.out.print(" - July 2, 2023");
+       }
+       if (artistName.equals("Ariana Grande")) {
+         System.out.print("\n\n  " +  artistName);
+         System.out.print(" - July 9, 2023");
+         System.out.print("\t\t\t\tPresale code? Enter 1 before buying");
+       }
+    seatingChartTwo(artistName);
+  }
+
+  public static void seatingChartOne (String artistName) {
+    Scanner input = new Scanner(System.in);
+    int seatTotal [] = {102,103,104,200,224,343,344,345,346,430};
+    int seat1 [] = {102,103,104};
+    int seat2 [] = {200,224};
+    int seat3 [] = {343,344,345,346};
+    int seat4 [] = {430};
+    
+    String presaleCode = "";
+    
+  System.out.println("\n\n\t\t\t\t\t\t\t\t\t\tSTAGE");
+    for (int x = 0; x<3; x++) {
+      System.out.print("\t"+ seat1[x]);
+    }
+    System.out.print("\n\n\t\t\t\t\t\t\t");
+    for (int x = 0; x<2; x++) {
+      System.out.print("\t"+ seat2[x]);
+    }
+    System.out.print("\n\n\t\t\t\t\t\t\t\t\t\t\t");
+    for (int x = 0; x<4; x++) {
+      System.out.print("\t"+ seat3[x]);
+    }
+    System.out.print("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      System.out.print("\t"+ seat4[0]);
+
+    orginalOne ();
+    
+    System.out.println("\n\nEnter the seat numbers you would like to buy, enter -1 to checkout");
+
+    int seatNum = input.nextInt();
+
+    int seatArray [] = new int [10];
+    int a = 0;
+  
+    while (seatNum == 1) {
+      if (seatNum == 1 && artistName.equals("Ariana Grande")) {
+      System.out.print("Presale Code: ");
+      presaleCode = input.next();
+        while (!presaleCode.equals("ICS2023")) {
+          System.out.println("Invalid Presale Code");
+          presaleCode = input.next();
+        }
+      if (presaleCode.equals("ICS2023")) {
+        System.out.print("\n\n\t\t\t" +  artistName);
+         System.out.print("  -  July 9, 2023");
+         System.out.print("\t\t\t\tPresale code? Enter 1 before buying");
+        System.out.println("\n\n\t\t\t\t\t\t\t\t\t\tSTAGE");
+    for (int x = 0; x<3; x++) {
+      System.out.print("\t"+ seat1[x]);
+    }
+    System.out.print("\n\n\t\t\t\t\t\t\t");
+    for (int x = 0; x<2; x++) {
+      System.out.print("\t"+ seat2[x]);
+    }
+    System.out.print("\n\n\t\t\t\t\t\t\t\t\t\t\t");
+    for (int x = 0; x<4; x++) {
+      System.out.print("\t"+ seat3[x]);
+    }
+    System.out.print("\n\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      System.out.print("\t"+ seat4[0]);
+      }
+        preSaleOne();
+        System.out.println("\n\nEnter the seat numbers you would like to buy, enter -1 to checkout");
+        seatNum = input.nextInt();
+    }
+      if (seatNum == 1 && artistName.equals("Justin Bieber")) {
+        break;
+      }
+    }
+
+      int j = 0;
+      while (seatNum != -1) {
+        int z = 0;
+        int y = 0;
+    
+     for (int k = 0; k<10; k++) {
+          if (seatNum == seatArray [k]) {
+            System.out.println("Invalid Seat");
+            z++;
+          }
+     }
+        
+        for (int x = 0; x<10; x++) {
+      if (seatNum == seatTotal[x] && z == 0) {
+            seatArray[j] = seatNum;
+        a++;
+        j++;
+        }
+    }
+      
+        for (int x = 0; x<10; x++) {
+          if (seatNum == seatTotal[x]) {
+            y++;
+          }
+       if (y != 1 && x == 9) {
+            System.out.println("Invalid Seat");
+         break;
+          }
+            }
+        
+    seatNum = input.nextInt();
+    }
+
+    int subTotal = 0;
+    if (presaleCode.equals("ICS2023")) {
+      for (int q = 0; q<seatArray.length; q++) {
+        if (seatArray[q] == 102 || seatArray[q] == 103 || seatArray[q] == 104) {
+          subTotal = subTotal + 400;
+        }
+        else if (seatArray[q] == 200 || seatArray[q] == 224) {
+          subTotal = subTotal + 300;
+        }
+        else if (seatArray[q] == 343 || seatArray[q] == 344 || seatArray[q] == 345 || seatArray[q] == 346) {
+          subTotal = subTotal + 200;
+        }
+        else if (seatArray[q] == 430) {
+          subTotal = subTotal + 150;
+        }
+      }
+    }
+    else {
+      for (int q = 0; q<seatArray.length; q++) {
+        if (seatArray[q] == 102 || seatArray[q] == 103 || seatArray[q] == 104) {
+          subTotal = subTotal + 500;
+        }
+        else if (seatArray[q] == 200 || seatArray[q] == 224) {
+          subTotal = subTotal + 400;
+        }
+        else if (seatArray[q] == 343 || seatArray[q] == 344 || seatArray[q] == 345 || seatArray[q] == 346) {
+          subTotal = subTotal + 300;
+        }
+        else if (seatArray[q] == 430) {
+          subTotal = subTotal + 250;
+        }
+    }
+    }
+    checkOut(subTotal, artistName, seatArray, a);
+  }
+
+public static void orginalOne () {
+  String ticketPriceA [] = {"$500","$500","$500","$400","$400","$300","$300","$300","$300","$250"};
+  System.out.println("\n");
+  System.out.println(" Seat Prices ");
+      System.out.print(" 100-199 = "+ ticketPriceA[0]);
+      System.out.print(" | 200-299 = "+ ticketPriceA[3]);
+      System.out.print(" | 300-399 = "+ ticketPriceA[5]);
+      System.out.print(" | 400-499 = "+ ticketPriceA[9]);
+  
+}
+      public static void preSaleOne () {
+    String ticketPriceB [] = {"$400","$400","$400","$300","$300","$200","$200","$200","$200","$150"};
+      System.out.println("\n");
+        System.out.println(" Seat Prices ");
+      System.out.print(" 100-199 = "+ ticketPriceB[0]);
+      System.out.print(" | 200-299 = "+ ticketPriceB[3]);
+      System.out.print(" | 300-399 = "+ ticketPriceB[5]);
+      System.out.print(" | 400-499 = "+ ticketPriceB[9]);
+    }
+
+  public static void seatingChartTwo (String artistName) {
+    Scanner input = new Scanner(System.in);
+    int seatTotal [] = {102,103,104,200,224,343,344,345,346,430};
+    String ticketPriceA [] = {"$550","$550","$400","$250"};
+    String ticketPriceB [] = {"$450","$450","$300","$150"};
+    String presaleCode = "";
+    
+    System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t STAGE");
+    System.out.print("\n\t\t\t"+seatTotal[1]);
+    System.out.print("\t\t"+seatTotal[2]);
+    System.out.println("\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t"+seatTotal[5]);
+  System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+seatTotal[7]);
+    System.out.println("\t");
+  if (!presaleCode.equals("ICS2023")) {
+    System.out.println("\n\t");
+    System.out.println(" Seat Prices ");
+    System.out.print(" 100-199 = "+ ticketPriceA[0]);
+      System.out.print(" | 343 = "+ ticketPriceA[2]);
+      System.out.print(" | 345 = "+ ticketPriceA[3]);
+}
+    
+    System.out.println("\n\nEnter the seat numbers you would like to buy, enter -1 to checkout");
+      int seatNum = input.nextInt();
+    
+    while (seatNum == 1) {
+      if (seatNum == 1 && artistName.equals("Ariana Grande")) {
+      System.out.print("Presale Code: ");
+      presaleCode = input.next();
+        while (!presaleCode.equals("ICS2023")) {
+          System.out.println("Invalid Presale Code");
+          presaleCode = input.next();
+        }
+      if (presaleCode.equals("ICS2023")) {
+        System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t STAGE");
+    System.out.print("\n\t\t\t"+seatTotal[1]);
+    System.out.print("\t\t"+seatTotal[2]);
+    System.out.println("\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t"+seatTotal[5]);
+  System.out.print("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"+seatTotal[7]);
+        System.out.println("\n\t");
+     System.out.println(" Seat Prices ");
+      System.out.print(" 100-199 = "+ ticketPriceB[0]);
+      System.out.print(" | 343 = "+ ticketPriceB[2]);
+      System.out.print(" | 345 = "+ ticketPriceB[3]);
+        System.out.println("\n\nEnter the seat numbers you would like to buy, enter -1 to checkout");
+    seatNum = input.nextInt();
+      }
+    }
+      if (seatNum == 1 && artistName.equals("Justin Bieber")) {
+        break;
+      }
+    }
+
+      int a = 0;
+     int seatArray [] = new int [10];
+      int j = 0;
+      while (seatNum != -1) {
+        int z = 0;
+        int y = 0;
+    
+     for (int k = 0; k<10; k++) {
+          if (seatNum == seatArray [k]) {
+            System.out.println("Invalid Seat");
+            z++;
+          }
+     }
+        
+        for (int x = 0; x<10; x++) {
+      if (seatNum == seatTotal[x] && z == 0) {
+            seatArray[j] = seatNum;
+        a++;
+        j++;
+        }
+    }
+      
+        for (int x = 0; x<10; x++) {
+          if (seatNum == seatTotal[x]) {
+            y++;
+          }
+       if (y != 1 && x == 9) {
+            System.out.println("Invalid Seat");
+         break;
+          }
+            }
+        
+    seatNum = input.nextInt();
+    }
+    
+    int subTotal = 0;
+    if (presaleCode.equals("ICS2023")) {
+      for (int q = 0; q<seatArray.length; q++) {
+        if (seatArray[q] == 103 || seatArray[q] == 104) {
+          subTotal = subTotal + 450;
+        }
+        else if (seatArray[q] == 343) {
+          subTotal = subTotal + 200;
+        }
+        else if (seatArray[q] == 345) {
+          subTotal = subTotal + 150;
+        }
+      }
+    }
+    else {
+      for (int q = 0; q<seatArray.length; q++) {
+        if (seatArray[q] == 103 || seatArray[q] == 104) {
+          subTotal = subTotal + 550;
+        }
+        else if (seatArray[q] == 343) {
+          subTotal = subTotal + 300;
+        }
+        else if (seatArray[q] == 345) {
+          subTotal = subTotal + 250;
+        }
+    }
+    }
+    checkOut(subTotal, artistName, seatArray, a);
+  }
+
+    public static void checkOut (int subTotal, String artistName, int seatArray [], int a) {
+      Scanner input = new Scanner(System.in);
+      
+      System.out.println("\n");
+      System.out.print("\t" + artistName);
+      if (artistName.equals("Ariana Grande")) {
+        System.out.println("\t\t\t\t\t\tJuly 9, 2023");
+      }
+      else {
+        System.out.println("\t\t\t\t\t\tJuly 2, 2023");
+      }
+
+      System.out.println("\n\tSeats Purchased");
+      for (int x = 0; x<a; x++) {
+      System.out.print("\tSeat " + seatArray[x]);
+      }
+      System.out.println("\n");
+      System.out.println("\tSubtotal \t\t\t\t\t\t\t\t$ " + subTotal);
+       System.out.println("\tHST (13%) \t\t\t\t\t\t\t\t$ " + hst(subTotal));
+       System.out.println("\tService Fee (25%) \t\t\t\t\t\t$ " + fees(subTotal));
+      System.out.println("\tTotal \t\t\t\t\t\t\t\t\t$ " + total(subTotal));
+
+      int q = 0;
+      String pay = "";
+      
+    System.out.println("\nInput submit to pay using debit card");
+        pay = input.next();
+      
+    while (q != 1) {
+    if (pay.equalsIgnoreCase("Submit")) {
+      email (subTotal, artistName, seatArray, a);
+      q++;
+    }
+    else {
+      System.out.println("\n\tInvalid response, enter again.");
+      pay = input.next();
+    }
+  }
+ }
+
+    public static Double hst (int subTotal) {
+      Double hst = subTotal*0.13;
+    return hst;
+  } 
+  public static Double fees (int subTotal) {
+      Double fees = subTotal*0.25;
+    return fees;
+  } 
+  public static Double total (int subTotal) {
+      Double total = subTotal+fees(subTotal)+hst(subTotal);
+    return total;
+  } 
+
+  public static void email (int subTotal, String artistName, int seatArray [], int a) {
+    Scanner input = new Scanner(System.in);
+    System.out.println("\nNotification: You have one new email, enter 1 to open it / any key to ignore it");
+    String response = input.next();
+    int x = 0;
+    
+    while (x != 1) {
+    if (response.equals("1")) {
+      x++;
+      System.out.println("\n\t\t\t\t   TicketMart Reciept");
+      System.out.println("\n");
+      System.out.print("\t" + artistName);
+      if (artistName.equals("Ariana Grande")) {
+        System.out.println("\t\t\t\t\t\tJuly 9, 2023");
+      }
+      else {
+        System.out.println("\t\t\t\t\t\tJuly 2, 2023");
+      }
+
+      System.out.println("\n\tSeats Purchased");
+      for (int o = 0; o<a; o++) {
+      System.out.print("\tSeat " + seatArray[o]);
+      }
+      System.out.println("\n");
+      System.out.println("\tSubtotal \t\t\t\t\t\t\t\t$ " + subTotal);
+       System.out.println("\tHST (13%) \t\t\t\t\t\t\t\t$ " + hst(subTotal));
+       System.out.println("\tService Fee (25%) \t\t\t\t\t\t$ " + fees(subTotal));
+      System.out.println("\tTotal \t\t\t\t\t\t\t\t\t$ " + total(subTotal));
+      System.out.println("\tDebit Card Balance \t\t\t\t\t\t$ " + result (subTotal));
+      
+      double result = 0;
+      if (result(subTotal) < 0) {
+        System.out.println("\tOverdraft fee \t\t\t\t\t\t\t$ 35 ");
+        result = result(subTotal) - 35;
+        System.out.println("\tBalance left \t\t\t\t\t\t\t$ " + result);
+      }
+     tickets(artistName, seatArray, a);
+    }
+      else  {
+        tickets(artistName, seatArray, a);
+        x++;
+      }
+     }
+    
+   }
+
+  public static Double result (int subTotal) {
+    double balanceFinal = 1000-total(subTotal);
+   return balanceFinal;
+  }
+
+  public static void tickets (String artistName, int seatArray [], int a) {
+    Random rand = new Random();
+    int p = 0;
+    while (p < a) {
+    
+    System.out.println("\n\n");
+    for (int x = 0; x<10; x++) {
+    System.out.print("-----");
+    }
+      System.out.println("\n");
+      System.out.println("\t\tSeat \t\t\t\tSection/Aisle");
+      System.out.println("\t\t " + seatArray[p] + "\t\t\t  General Admission");
+      System.out.println("\n\t\t\t\t  " + artistName);
+      if (artistName.equals("Ariana Grande")) {
+        System.out.println("\t\t\t\t  July 8, 2023");
+      }
+      else if (artistName.equals("Justin Bieber")) {
+        System.out.println("\t\t\t\t  July 2, 2023");
+      }
+
+        System.out.println("\n-----------------------------");
+        System.out.println("||| ||||| || | |||||| |||| ||");
+        System.out.println("||| ||||| || | |||||| |||| ||");
+        System.out.println("-----------------------------");
+      
+      System.out.print("\t ");
+      for (int r = 0; r<4; r++) {
+      for (int i = 0; i<4; i++) {
+      System.out.print(rand.nextInt(10));
+    }
+        System.out.print(" ");
+      }
+      System.out.print("\t\t\tTicketMart");
+
+      System.out.println("\n");
+    for (int x = 0; x<10; x++) {
+    System.out.print("-----");
+    }
+    
+    p++;
+  }
+  }
+  
+}
