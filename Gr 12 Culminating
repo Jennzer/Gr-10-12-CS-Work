@@ -1,0 +1,110 @@
+import java.util.*;
+
+public class MyProgram
+{
+    // Calender where people can state their availability and then chooses the date people are most
+    // available 
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the total number of people");
+        int num = input.nextInt();
+        input.nextLine();
+        int [] availability = new int [num];
+        int o = 0;
+        String day = "";
+        int [] days = new int [5];
+        
+        System.out.println("Enter your name");
+        String name = input.nextLine();
+        System.out.println("Hi " + name + "! Please list your availability, enter n for next or q to quit");
+        
+        while (o < num) {
+            calenderBooking();
+            while (!day.equals("q") && !day.equals("n")) {
+            day = input.nextLine();
+            day = day.toLowerCase();
+            if (day.equals("n")) {
+                System.out.println("Hi " + newPerson() + "! Please list your availability, enter n for next or q to quit");
+                calenderBooking();
+                o++;
+            }
+            if (day.equals("monday")) {
+                days[0] += 1;
+            }
+            else if (day.equals("tuesday")) {
+                days[1] += 1;
+            }
+            else if (day.equals("wednesday")) {
+                days[2] += 1;
+            }
+            else if (day.equals("thursday")) {
+                days[3] += 1;
+            }
+            else if (day.equals("friday")) {
+                days[4] += 1;
+            }
+            // Break out inner loop
+            if (day.equals("q")) {
+                break;
+            }
+        }
+        // To break out entire loop
+        if (day.equals("q")) {
+                break;
+            }
+        }
+         bestDay(days);
+    }
+         
+        private static void bestDay(int[] array) {
+        int [] days = array;
+        int max = 0;
+        String j = "";
+        String n = "";
+        ArrayList <Integer> index = new ArrayList <Integer>();
+        
+        for(int t = 0; t<5; t++)
+            {
+                if (days[t] > max) {
+                    max = days[t];
+                }
+            }
+            
+            // Get the array to print all the days that has the same amount of availability
+            for (int r = 0; r<5; r++) {
+                if (max == days[r]) {
+                    j += ((r+1));
+                }
+            }
+            
+            for (int r = 0; r<j.length(); r++) {
+                n += j.substring(r,r+1);
+                     if (r < j.length() - 1) {
+                n += ",";
+                }
+                else {
+                    n += j.substring(j.length());
+                }
+            }
+            
+            System.out.println("\n(1) Monday | (2) Tuesday | (3) Wednesday | (4) Thursday | (5) Friday");
+            System.out.println("Availability Day(s): " + n);
+            
+    }
+        
+        private static void calenderBooking()
+    {
+        System.out.println("Monday | Tuesday | Wednesday | Thursday | Friday");
+    }
+    
+         private static String newPerson()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter your name");
+        String name = input.nextLine();
+        
+        return name;
+    }
+    
+}
